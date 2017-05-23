@@ -3,12 +3,18 @@ PROJECT(bunget)
 
 include_directories ("./include")
 
+include(CrossCompilation.cmake)
 add_definitions(-DDEBUG)
 add_definitions(-DONGOING)
 #add_definitions(-DNO_USE_UVLIB )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
 set(LIBRARY_OUTPUT_PATH ../lib)
+
+#newly added for libcrypto mipsel
+include_directories(../../../libcrypto++-dev/usr/include)
+LINK_DIRECTORIES(../../../libcrypto++-dev/usr/lib)
+#end adding - Bill Thompson
 
 add_library(bunget STATIC ascon.cpp
                              bt_incinpl.cpp

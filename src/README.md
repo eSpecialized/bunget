@@ -7,6 +7,27 @@
   * sudo apt-get install cmake
   * sudo apt-get install build-essential
   * sudo apt-get install libcrypto++-dev
+
+
+### MIPSEL Phoenix X1000 Cross Compiling
+
+//Get LibCrypto++-dev for the target platform;
+// from bunget root
+cd ..
+wget http://ftp.us.debian.org/debian/pool/main/libc/libcrypto++/libcrypto++-dev_5.6.1-6+deb8u3_mipsel.deb
+dpkg -x libcrypto++-dev_5.6.1-6+deb8u3_mipsel.deb  libcrypto++-dev
+
+//For this platform, MIPSEL
+//Export the build environment compilers
+export CROSS_COMPILE=~/storage/phoenixV3/prebuilts/toolchains/mips-gcc472-glibc216/bin/mips-linux-gnu-
+export SYSROOT=~/storage/phoenixV3
+
+cd bunget/src/libbunget
+cmake .
+make
+cd ..
+cmake .
+make
   
  
 ### x86
